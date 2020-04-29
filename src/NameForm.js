@@ -2,25 +2,24 @@ import React, { useState } from "react";
 
 export default function NameForm(props) {
   const [name, setName] = useState("");
+
   const handleName = (event) => {
     event.preventDefault();
-    const form = event.currentTarget;
 
-    if (!form.checkValidity()) {
-      event.stopPropagation();
+    if (name === "") {
+      console.log("add a name");
+      return;
     }
-    setName(true);
-
-    props.onName();
+    props.onName(name);
   };
 
   return (
     <form className="name">
       <label>
         Name:
-        <input type="text" name="name" onSubmit={handleName} />
+        <input type="text" name="name" onChange={setName} />
       </label>
-      <input type="submit" value="Next" />
+      <input type="submit" value="Next" onClick={handleName} />
     </form>
   );
 }

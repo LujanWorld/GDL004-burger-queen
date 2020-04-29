@@ -1,4 +1,4 @@
-let items = [
+export default [
   { name: "Café americano", price: 5.0, type: "desayuno", category: "" },
   { name: "Café con leche", price: 7.0, type: "desayuno", category: "" },
   {
@@ -63,20 +63,25 @@ let items = [
   },
 ];
 
-const filterByType = (arr, t) => {
-  return arr.filter((item) => item.type === t);
-};
+// const filterByType = (arr, t) => {
+//   return arr.filter((item) => item.type === t);
+// };
 
-console.log(filterByType(items, "cena"));
+// console.log(filterByType(items, "cena"));
 
-function filter(arr, cb) {
-  let res = [];
+// function filter(arr, cb) {
+//   let res = [];
 
-  arr.forEach((el) => {
-    if (cb(el) == true) {
-      res.push(el);
-    }
-  });
+//   arr.forEach((el) => {
+//     if (cb(el) == true) {
+//       res.push(el);
+//     }
+//   });
 
-  return res;
-}
+//   return res;
+// }
+// console.log(
+//   items.find((el) => {
+//     return el.name === "Café americano";
+//   })
+// );
