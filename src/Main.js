@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export default function Main(props) {
   const [activeType, setActiveType] = useState("desayuno");
+  const [order, setOrder] = useState([]);
   console.log(props.items);
   let uniqueTypes = [];
   props.items.forEach((el) => {
@@ -13,26 +17,69 @@ export default function Main(props) {
   });
   console.log(uniqueTypes);
 
-  const curItems = props.items.filter((item) => item.type === "desayuno");
-  // const cena = props.items.filter((cn) => cn.type === "cena");
+  const curItems = props.items.filter((item) => item.type === activeType);
 
-  // console.log(curItems);
+  const addProductToOrder = (product) => {
+    setOrder((order) => [...order, product]);
+  };
+
+  const removeProductFromOrder = (product) => {
+    setOrder((order) =>
+      order.map((e) => {
+        if (e.id === product.id) {
+          return;
+        }
+
+        return e;
+      })
+    );
+
+    // setOrder((order) => order.filter((pro) => pro.id !== product.id));
+  };
+  console.log({ order });
   return (
-    <form className="name">
+    <form className="items">
       {uniqueTypes.map((ty, index) => (
-        <button key={index}>{ty}</button>
+        <Button
+          className="itemButtons"
+          variant="warning"
+          onClick={(e) => {
+            e.preventDefault();
+            setActiveType(ty);
+          }}
+          key={index}
+        >
+          {ty}
+        </Button>
       ))}
-      {/* {cena.map((item, index) => (
-        <div key={index}>
-          {item.name}--{item.price}
-        </div>
-      ))} */}
 
       {curItems.map((item, index) => (
-        <div key={index}>
+        <ListGroup.Item
+          className="foodList"
+          body
+          style={{ width: "25rem" }}
+          key={index}
+          onClick={() => addProductToOrder(item)}
+        >
           {item.name}={item.price}
-        </div>
+        </ListGroup.Item>
       ))}
+      <Card className="orderCard" body style={{ width: "25rem" }}>
+        <Card.Body>
+          <Card.Title>Tu orden es: </Card.Title>
+          {order.map((product) => (
+            <ListGroup.Item
+              className="foodList"
+              body
+              style={{ width: "25rem" }}
+              key={product.id}
+              onClick={() => removeProductFromOrder(product)}
+            >
+              {product.name}={product.price}
+            </ListGroup.Item>
+          ))}
+        </Card.Body>
+      </Card>
     </form>
   );
 }

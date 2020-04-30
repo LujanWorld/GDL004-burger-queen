@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import NameForm from "./NameForm";
 import "./App.css";
 import Main from "./Main";
