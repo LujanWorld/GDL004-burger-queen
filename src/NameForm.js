@@ -16,7 +16,7 @@ export default function NameForm(props) {
   return (
     <form className="name">
       <label>
-        Name:
+        Nombre:
         <input type="text" name="name" onChange={setName} />
       </label>
       <input type="submit" value="Next" onClick={handleName} />

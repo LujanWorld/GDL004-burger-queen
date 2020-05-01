@@ -20,21 +20,11 @@ export default function Main(props) {
   const curItems = props.items.filter((item) => item.type === activeType);
 
   const addProductToOrder = (product) => {
-    setOrder((order) => [...order, product]);
+    setOrder([...order, product]);
   };
 
   const removeProductFromOrder = (product) => {
-    setOrder((order) =>
-      order.map((e) => {
-        if (e.id === product.id) {
-          return;
-        }
-
-        return e;
-      })
-    );
-
-    // setOrder((order) => order.filter((pro) => pro.id !== product.id));
+    setOrder(order.filter((pro) => pro.id !== product.id));
   };
   console.log({ order });
   return (
@@ -57,14 +47,15 @@ export default function Main(props) {
         <ListGroup.Item
           className="foodList"
           body
-          style={{ width: "25rem" }}
+          style={{ width: "15rem" }}
           key={index}
           onClick={() => addProductToOrder(item)}
         >
           {item.name}={item.price}
         </ListGroup.Item>
       ))}
-      <Card className="orderCard" body style={{ width: "25rem" }}>
+
+      <Card className="orderCard" body style={{ width: "55rem" }}>
         <Card.Body>
           <Card.Title>Tu orden es: </Card.Title>
           {order.map((product) => (
@@ -78,6 +69,7 @@ export default function Main(props) {
               {product.name}={product.price}
             </ListGroup.Item>
           ))}
+          <Button variant="success">Enviar a cocina</Button>
         </Card.Body>
       </Card>
     </form>
