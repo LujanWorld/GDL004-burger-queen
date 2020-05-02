@@ -6,18 +6,24 @@ import ListGroup from "react-bootstrap/ListGroup";
 export default function Main(props) {
   const [activeType, setActiveType] = useState("desayuno");
   const [order, setOrder] = useState([]);
-  console.log(props.items);
+  // console.log(props.items);
   let uniqueTypes = [];
   props.items.forEach((el) => {
-    console.log(el.type);
+    // console.log(el.type);
     let pos = uniqueTypes.indexOf(el.type);
     if (pos === -1) {
       uniqueTypes.push(el.type);
     }
   });
-  console.log(uniqueTypes);
+  // console.log(uniqueTypes);
 
   const curItems = props.items.filter((item) => item.type === activeType);
+  console.log(curItems);
+  let sum = 0;
+  order.forEach((item) => {
+    sum += item.price;
+  });
+  console.log(sum);
 
   const addProductToOrder = (product) => {
     setOrder([...order, product]);
@@ -26,7 +32,7 @@ export default function Main(props) {
   const removeProductFromOrder = (product) => {
     setOrder(order.filter((pro) => pro.id !== product.id));
   };
-  console.log({ order });
+  // console.log({ order });
   return (
     <form className="items">
       {uniqueTypes.map((ty, index) => (
@@ -69,6 +75,7 @@ export default function Main(props) {
               {product.name}={product.price}
             </ListGroup.Item>
           ))}
+          <p>El Total es: {sum}</p>
           <Button variant="success">Enviar a cocina</Button>
         </Card.Body>
       </Card>

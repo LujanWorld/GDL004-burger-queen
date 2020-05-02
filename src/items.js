@@ -1,6 +1,6 @@
 export default [
-  { name: "Café americano", price: 5.0, type: "desayuno", category: "", id: 1 },
-  { name: "Café con leche", price: 7.0, type: "desayuno", category: "", id: 2 },
+  { id: 1, name: "Café americano", price: 5.0, type: "desayuno", category: "" },
+  { id: 2, name: "Café con leche", price: 7.0, type: "desayuno", category: "" },
   {
     id: 3,
     name: "Sandwich de jamón y queso",
@@ -72,26 +72,3 @@ export default [
     category: "Para tomar",
   },
 ];
-
-// const filterByType = (arr, t) => {
-//   return arr.filter((item) => item.type === t);
-// };
-
-// console.log(filterByType(items, "cena"));
-
-// function filter(arr, cb) {
-//   let res = [];
-
-//   arr.forEach((el) => {
-//     if (cb(el) == true) {
-//       res.push(el);
-//     }
-//   });
-
-//   return res;
-// }
-// console.log(
-//   items.find((el) => {
-//     return el.name === "Café americano";
-//   })
-// );
