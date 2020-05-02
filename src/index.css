@@ -12,3 +12,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.name {
+  margin-top: 220px;
+}
+/* .App {
+  margin-top: auto;
+} */
+.items {
+  text-align: justify;
+  margin-top: 220px;
+  margin-left: 350px;
+}
+.itemsButtons {
+  margin-left: 20px;
+}
+.foodList {
+  margin-top: 20px;
+}
+.orderCard {
+  /* margin-top: 10px; */
+  margin-left: auto;
+}
