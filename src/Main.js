@@ -6,19 +6,17 @@ import ListGroup from "react-bootstrap/ListGroup";
 export default function Main(props) {
   const [activeType, setActiveType] = useState("desayuno");
   const [order, setOrder] = useState([]);
-  // console.log(props.items);
+
   let uniqueTypes = [];
   props.items.forEach((el) => {
-    // console.log(el.type);
     let pos = uniqueTypes.indexOf(el.type);
     if (pos === -1) {
       uniqueTypes.push(el.type);
     }
   });
-  // console.log(uniqueTypes);
 
   const curItems = props.items.filter((item) => item.type === activeType);
-  console.log(curItems);
+  // console.log(curItems);
   let sum = 0;
   order.forEach((item) => {
     sum += item.price;
