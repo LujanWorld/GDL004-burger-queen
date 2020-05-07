@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import { Switch, Route, Link, Router, useHistory } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import NameForm from "./NameForm";
-// import KitchenForm from "./KitchenForm";
-
-import "./App.css";
+import KitchenForm from "./KitchenForm";
 import Main from "./Main";
 import items from "./items";
+import "./App.css";
 
 function App() {
   const [name, setName] = useState("");
   const [Kitchen, setKitchen] = useState("");
-  let showName = name === "";
+  const [displayForm, setDisplayForm] = useState(true);
+  // let showName = name === "";
   let showKitchen = Kitchen === "";
+
   return (
     <div className="App">
       <div className="topnav">
@@ -20,11 +23,17 @@ function App() {
         </a>
       </div>
 
-      {showName && <NameForm onName={setName} />}
+      {displayForm && (
+        <NameForm
+          onName={setName}
+          name={name}
+          setDisplayForm={setDisplayForm}
+        />
+      )}
 
-      {!showName && <Main items={items} />}
+      {!displayForm && <Main items={items} name={name} />}
 
-      {/* {showKitchen && <KitchenForm onKitchenorder={setKitchen} />} */}
+      {showKitchen && <KitchenForm onKitchenorder={setKitchen} />}
     </div>
   );
 }

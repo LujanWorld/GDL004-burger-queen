@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 
 export default function NameForm(props) {
-  const [name, setName] = useState("");
-
   const handleName = (event) => {
-    event.preventDefault();
+    props.onName(event.target.value);
+  };
 
-    if (name === "") {
-      console.log("add a name");
-      return;
-    }
-    props.onName(name);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.setDisplayForm(false);
   };
 
   return (
-    <form className="name">
+    <form className="name" onSubmit={handleSubmit}>
       <label>
         Nombre:
-        <input type="text" name="name" onChange={setName} />
+        <input
+          type="text"
+          name="name"
+          value={props.name}
+          onChange={handleName}
+        />
       </label>
-      <input type="submit" value="Next" onClick={handleName} />
+      <button type="submit" value="Next">
+        Continuar
+      </button>
     </form>
   );
 }

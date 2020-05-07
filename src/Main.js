@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+//import KitchenForm from "./KitchenForm";
 
 export default function Main(props) {
   const [activeType, setActiveType] = useState("desayuno");
@@ -30,7 +31,47 @@ export default function Main(props) {
   const removeProductFromOrder = (product) => {
     setOrder(order.filter((pro) => pro.id !== product.id));
   };
-  // console.log({ order });
+
+  const addOrder = () => {
+    const products = [...order];
+    const customerName = props.name;
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    const price = order.reduce(
+      (totalPrice, currentProduct) => totalPrice + currentProduct.price,
+      0
+    );
+    const payload = {
+      products,
+      customerName,
+      price,
+    };
+
+    // console.log({
+    //   products,
+    //   customerName,
+    //   price,
+    // });
+    // 0 + 5.0
+    // console.log(order.reduce(price));
+    // const payload  = {
+    //   products: [],
+    //   customerName: '',
+    //   price: 0;
+    // };
+    // firebase
+    //   .firestore()
+    //   .collection("order")
+    //   .add({
+    //     product: order,
+    //     price: price,
+    //     customer: customer,
+    //   })
+    //   .then((data) => {
+    //     /** Change the state */
+    //   })
+    //   .catch((err) => {});
+  };
+  console.log({ order });
   return (
     <form className="items">
       {uniqueTypes.map((ty, index) => (
@@ -74,7 +115,9 @@ export default function Main(props) {
             </ListGroup.Item>
           ))}
           <p>El Total es: {sum}</p>
-          <Button variant="success">Enviar a cocina</Button>
+          <Button variant="success" onClick={addOrder}>
+            Enviar a cocina
+          </Button>
         </Card.Body>
       </Card>
     </form>
